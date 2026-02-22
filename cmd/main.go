@@ -1,7 +1,8 @@
 package main
 
-import "fmt"
-
 func main() {
-	fmt.Println("ddd")
+	i := 1
+	for i == 1{
+		continue
+	}
 }
