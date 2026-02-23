@@ -2,6 +2,7 @@ package mygorm
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/gtimofej0303/TZ-hitalent/internal/domain"
 	"github.com/gtimofej0303/TZ-hitalent/internal/repository"
@@ -33,7 +34,7 @@ func (r *EmployeeRepo) GetByDepartmentID(ctx context.Context, deptID uint) ([]*d
 
 func (r *EmployeeRepo) ReassignToDepartment(ctx context.Context, deptID uint, newDeptID uint) error {
 	if deptID == newDeptID {
-		return nil
+		return fmt.Errorf("ReassignToDepartment: invalid new department id")
 	}
 	result := r.db.WithContext(ctx).
 		Model(&domain.Employee{}).
