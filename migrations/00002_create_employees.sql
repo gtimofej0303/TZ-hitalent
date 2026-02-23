@@ -1,7 +1,7 @@
 -- +goose Up
-CREATE TABLE employee(
+CREATE TABLE employees(
     id              SERIAL PRIMARY KEY,
-    department_id   INT NOT NULL REFERENCES department(id),
+    department_id   INT NOT NULL REFERENCES departments(id),
     full_name       VARCHAR(200) NOT NULL,
     position        VARCHAR(200) NOT NULL,
     hired_at        DATE,
@@ -9,4 +9,4 @@ CREATE TABLE employee(
 );
 
 -- +goose Down
-DROP TABLE employee;
+DROP TABLE employees;
