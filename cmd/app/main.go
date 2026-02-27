@@ -9,8 +9,8 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	"github.com/gtimofej0303/TZ-hitalent/config"
-	"github.com/gtimofej0303/TZ-hitalent/internal/handler"
+	"github.com/gtimofej0303/org-structure-api/config"
+	"github.com/gtimofej0303/org-structure-api/internal/handler"
 )
 
 func main() {
@@ -39,8 +39,8 @@ func main() {
 
 	//Для тестирования
 	/*if err := goose.Reset(gormSqlDB, migrationsDir); err != nil {
-        log.Fatal("goose reset failed: ", err)
-    }*/
+	    log.Fatal("goose reset failed: ", err)
+	}*/
 
 	if err := goose.Up(gormSqlDB, "./migrations"); err != nil {
 		log.Fatal("goose up failed:", err)
@@ -54,6 +54,6 @@ func main() {
 	log.Printf("Server starting on :%s", port)
 
 	if err := http.ListenAndServe(":"+port, router); err != nil {
-        log.Fatal("server error: ", err)
-    }
+		log.Fatal("server error: ", err)
+	}
 }

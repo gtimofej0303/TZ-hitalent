@@ -1,4 +1,4 @@
-module github.com/gtimofej0303/TZ-hitalent
+module github.com/gtimofej0303/org-structure-api
 
 go 1.25.5
 

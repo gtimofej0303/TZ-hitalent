@@ -1,6 +1,6 @@
 REST API для управления иерархической структурой отделов и сотрудников компании.
 
-Структуру проекта можно посмотреть в файле "ТЗ Go - API организационной структуры.pdf"
+Структуру проекта можно посмотреть в файле "ТЗ.pdf"
 
 ## Технологии
 - **Go 1.25**
@@ -14,8 +14,8 @@ REST API для управления иерархической структур
 ### 1. Клонировать репозиторий
 
 ```bash
-git clone https://github.com/gtimofej0303/TZ-hitalent
-cd TZ-hitalent
+git clone https://github.com/gtimofej0303/org-structure-api
+cd org-structure-api
 ```
 
 ### 2. Создать .env файл

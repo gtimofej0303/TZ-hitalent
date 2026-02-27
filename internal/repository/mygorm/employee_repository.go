@@ -4,8 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/gtimofej0303/TZ-hitalent/internal/domain"
-	"github.com/gtimofej0303/TZ-hitalent/internal/repository"
+	"github.com/gtimofej0303/org-structure-api/internal/domain"
+	"github.com/gtimofej0303/org-structure-api/internal/repository"
+
 	"gorm.io/gorm"
 )
 

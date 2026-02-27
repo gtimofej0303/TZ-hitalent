@@ -4,8 +4,9 @@ import (
 	"context"
 	"errors"
 
-	"github.com/gtimofej0303/TZ-hitalent/internal/domain"
-	"github.com/gtimofej0303/TZ-hitalent/internal/repository"
+	"github.com/gtimofej0303/org-structure-api/internal/domain"
+	"github.com/gtimofej0303/org-structure-api/internal/repository"
+
 	"gorm.io/gorm"
 )
 
@@ -41,8 +42,8 @@ func (r *DepartmentRepo) Delete(ctx context.Context, id uint) error {
 	return r.db.WithContext(ctx).Delete(&domain.Department{}, id).Error
 }
 
-func (r *DepartmentRepo) GetChildren(ctx context.Context, parentID uint, depth int) ([]*domain.Department, error){
-	if depth <= 0{
+func (r *DepartmentRepo) GetChildren(ctx context.Context, parentID uint, depth int) ([]*domain.Department, error) {
+	if depth <= 0 {
 		return nil, nil
 	}
 
@@ -63,15 +64,15 @@ func (r *DepartmentRepo) GetChildren(ctx context.Context, parentID uint, depth i
         ORDER BY level, id
     `
 	err := r.db.WithContext(ctx).Raw(query, parentID, depth).Scan(&children).Error
-    if err != nil {
-        return nil, err
-    }
-    return children, nil
+	if err != nil {
+		return nil, err
+	}
+	return children, nil
 }
 
 func (r *DepartmentRepo) ExistsByNameAndParent(ctx context.Context, name string, parentID *uint) (bool, error) {
 	var count int64
-	
+
 	if parentID != nil {
 		// name = ? AND parent_id = ?
 		err := r.db.WithContext(ctx).
@@ -91,6 +92,6 @@ func (r *DepartmentRepo) ExistsByNameAndParent(ctx context.Context, name string,
 			return false, err
 		}
 	}
-	
+
 	return count > 0, nil
 }

@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/gtimofej0303/TZ-hitalent/internal/domain"
-	"github.com/gtimofej0303/TZ-hitalent/internal/repository"
+	"github.com/gtimofej0303/org-structure-api/internal/domain"
+	"github.com/gtimofej0303/org-structure-api/internal/repository"
 )
 
 type EmployeeService interface {
@@ -30,7 +30,7 @@ func NewEmployeeService(
 	}
 }
 
-func (s *employeeService) Create(ctx context.Context, deptID uint, Fullname string, Position string, hiredAt *time.Time) (*domain.Employee, error){
+func (s *employeeService) Create(ctx context.Context, deptID uint, Fullname string, Position string, hiredAt *time.Time) (*domain.Employee, error) {
 	Fullname = strings.TrimSpace(Fullname)
 	Position = strings.TrimSpace(Position)
 
@@ -59,7 +59,6 @@ func (s *employeeService) Create(ctx context.Context, deptID uint, Fullname stri
 	}
 	return emp, nil
 }
-
 
 func (s *employeeService) GetByDepartmentID(ctx context.Context, deptID uint) ([]*domain.Employee, error) {
 	dept, err := s.deptRepo.GetByID(ctx, deptID)

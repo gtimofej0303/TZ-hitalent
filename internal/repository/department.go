@@ -3,7 +3,7 @@ package repository
 import (
 	"context"
 
-	"github.com/gtimofej0303/TZ-hitalent/internal/domain"
+	"github.com/gtimofej0303/org-structure-api/internal/domain"
 )
 
 type DepartmentRepository interface {

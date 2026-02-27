@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/gtimofej0303/TZ-hitalent/internal/dto"
-	"github.com/gtimofej0303/TZ-hitalent/internal/service"
+	"github.com/gtimofej0303/org-structure-api/internal/dto"
+	"github.com/gtimofej0303/org-structure-api/internal/service"
 )
 
 type DepartmentHandler struct {
@@ -165,9 +165,9 @@ func writeServiceError(w http.ResponseWriter, err error) {
 	case errors.Is(err, service.ErrInvalidName):
 		writeError(w, http.StatusBadRequest, err.Error())
 	case errors.Is(err, service.ErrInvalidFullName):
-   		writeError(w, http.StatusBadRequest, err.Error())
+		writeError(w, http.StatusBadRequest, err.Error())
 	case errors.Is(err, service.ErrInvalidPosition):
-    	writeError(w, http.StatusBadRequest, err.Error())
+		writeError(w, http.StatusBadRequest, err.Error())
 	default:
 		log.Printf("internal error: %v", err)
 		writeError(w, http.StatusInternalServerError, "internal server error")

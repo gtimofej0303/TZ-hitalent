@@ -3,24 +3,24 @@ package dto
 import (
 	"time"
 
-	"github.com/gtimofej0303/TZ-hitalent/internal/domain"
+	"github.com/gtimofej0303/org-structure-api/internal/domain"
 )
 
 type DepartmentTree struct {
-	ID        	uint				`json:"id"`
-	Name      	string				`json:"name"`
-	ParentID  	*uint				`json:"parent_id"`
-	CreatedAt 	time.Time			`json:"created_at"`
-	Children 	[]*DepartmentTree	`json:"children"`
-	Employees	[]*EmployeeList		`json:"employees,omitempty"`
+	ID        uint              `json:"id"`
+	Name      string            `json:"name"`
+	ParentID  *uint             `json:"parent_id"`
+	CreatedAt time.Time         `json:"created_at"`
+	Children  []*DepartmentTree `json:"children"`
+	Employees []*EmployeeList   `json:"employees,omitempty"`
 }
 
 type EmployeeList struct {
-	Fullname 	string		`json:"fullname"`
-	CreatedAt 	time.Time	`json:"created_at"`
-
+	Fullname  string    `json:"fullname"`
+	CreatedAt time.Time `json:"created_at"`
 }
-//---------------------------------------------
+
+// ---------------------------------------------
 type CreateDepartmentRequest struct {
 	Name     string `json:"name"`
 	ParentID *uint  `json:"parent_id"`
