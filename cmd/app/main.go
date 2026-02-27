@@ -1,9 +1,8 @@
 package main
 
 import (
-	"context"
 	"log"
-	"time"
+	"net/http"
 
 	_ "github.com/lib/pq"
 	"github.com/pressly/goose/v3"
@@ -11,8 +10,7 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/gtimofej0303/TZ-hitalent/config"
-	"github.com/gtimofej0303/TZ-hitalent/internal/domain"
-	"github.com/gtimofej0303/TZ-hitalent/internal/repository/mygorm"
+	"github.com/gtimofej0303/TZ-hitalent/internal/handler"
 )
 
 func main() {
@@ -35,14 +33,27 @@ func main() {
 		log.Fatal(err)
 	}
 
-	goose.SetDialect("postgres")
-	if err := goose.Up(gormSqlDB, "./migrations"); err != nil {
-        log.Fatal("goose up failed:", err)
-    }
-    log.Println("Migrations applied succesfully")
+	const migrationsDir = "./migrations"
 
-	i := 1
-	for i == 1 {
-		continue
+	goose.SetDialect("postgres")
+
+	//Для тестирования
+	/*if err := goose.Reset(gormSqlDB, migrationsDir); err != nil {
+        log.Fatal("goose reset failed: ", err)
+    }*/
+
+	if err := goose.Up(gormSqlDB, "./migrations"); err != nil {
+		log.Fatal("goose up failed:", err)
 	}
+	log.Println("Migrations applied successfully")
+
+	port := "8080"
+
+	router := handler.NewRouter(gormDB)
+
+	log.Printf("Server starting on :%s", port)
+
+	if err := http.ListenAndServe(":"+port, router); err != nil {
+        log.Fatal("server error: ", err)
+    }
 }

@@ -30,15 +30,15 @@ func NewEmployeeService(
 	}
 }
 
-func (s *employeeService) Create(ctx context.Context, deptID uint, fullName string, position string, hiredAt *time.Time) (*domain.Employee, error){
-	fullName = strings.TrimSpace(fullName)
-	position = strings.TrimSpace(position)
+func (s *employeeService) Create(ctx context.Context, deptID uint, Fullname string, Position string, hiredAt *time.Time) (*domain.Employee, error){
+	Fullname = strings.TrimSpace(Fullname)
+	Position = strings.TrimSpace(Position)
 
-	if len(fullName) == 0 || len(fullName) > 200 {
+	if len(Fullname) == 0 || len(Fullname) > 200 {
 		return nil, ErrInvalidFullName
 	}
 
-	if len(position) == 0 || len(position) > 200 {
+	if len(Position) == 0 || len(Position) > 200 {
 		return nil, ErrInvalidPosition
 	}
 
@@ -49,8 +49,8 @@ func (s *employeeService) Create(ctx context.Context, deptID uint, fullName stri
 
 	emp := &domain.Employee{
 		DepartmentID: deptID,
-		Fullname:     fullName,
-		Position:     position,
+		Fullname:     Fullname,
+		Position:     Position,
 		HiredAt:      hiredAt,
 	}
 

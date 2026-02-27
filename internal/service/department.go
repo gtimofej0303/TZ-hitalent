@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"fmt"
+	"strings"
 
 	"github.com/gtimofej0303/TZ-hitalent/internal/domain"
 	"github.com/gtimofej0303/TZ-hitalent/internal/repository"
@@ -30,6 +31,8 @@ func NewDepartmentService(
 }
 
 func (s *departmentService) Create(ctx context.Context, name string, parentID *uint) (*domain.Department, error) {
+	name = strings.TrimSpace(name)
+	
 	if (len(name) == 0) || (len(name) > 200) {
 		return nil, ErrInvalidName
 	}
@@ -69,6 +72,8 @@ func (s *departmentService) GetByID(ctx context.Context, id uint) (*domain.Depar
 }
 
 func (s *departmentService) Update(ctx context.Context, id uint, name string, parentID *uint) (*domain.Department, error) {
+	name = strings.TrimSpace(name)
+	
 	if len(name) == 0 || len(name) > 200 {
 		return nil, ErrInvalidName
 	}
@@ -128,6 +133,12 @@ func (s *departmentService) Delete(ctx context.Context, id uint, mode string, re
 				return fmt.Errorf("failed to delete department: %w", err)
 			}
 		}
+
+		if err := s.empRepo.DeleteByDepartmentID(ctx, id); err != nil {
+        	return fmt.Errorf("failed to delete employees of root dept: %w", err)
+    	}
+		return s.repo.Delete(ctx, id)
+
 
 	case "reassign":
 		if reassignTo == nil || *reassignTo == 0 {

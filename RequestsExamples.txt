@@ -1,0 +1,31 @@
+==Создание подразделения==
+curl -X POST http://localhost:8080/departments/ \
+    -H "Content-Type: application/json" \
+    -d '{"name": "Engineering", "parent_id": null}'
+
+==Создание сотрудника==
+curl -X POST http://localhost:8080/departments/1/employees/ \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fullname": "Ivan Petrov",
+    "position": "Developer",
+    "hired_at": "2024-01-15T00:00:00Z"
+  }'
+
+==Обновление подразделения==
+curl -X PATCH http://localhost:8080/departments/2 \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Math", "parent_id": 1}'
+
+==Получение информации о подразделении==
+curl "http://localhost:8080/departments/1?depth=2&include_employees=true"
+
+==Удаление (cascade)==
+curl -X DELETE "http://localhost:8080/departments/1?mode=cascade"
+
+==Удаление (reassign)==
+curl -X DELETE "http://localhost:8080/departments/2?mode=reassign&reassign_to=1"
+
+
+
+

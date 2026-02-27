@@ -17,4 +17,3 @@ var (
     ErrInvalidFullName          = errors.New("full_name must be between 1 and 200 characters")
     ErrInvalidPosition          = errors.New("position must be between 1 and 200 characters")
 )
-)
